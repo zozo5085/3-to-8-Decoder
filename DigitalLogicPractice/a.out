@@ -1,0 +1,169 @@
+#! /usr/share/iverilog-0.10.0/bin/vvp
+:ivl_version "0.10.0 (devel)" "(v0_9_6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_0x11b8590 .scope module, "decoder_3_8_tb" "decoder_3_8_tb" 2 15;
+ .timescale 0 0;
+v0x11e66c0_0 .var "E_tb", 0 0;
+v0x11e6760_0 .var "In_tb", 2 0;
+v0x11e6830_0 .net "Out_tb", 7 0, L_0x11e7840;  1 drivers
+v0x11e6930_0 .var "clka", 0 0;
+v0x11e6a00_0 .net "clka_out", 0 0, v0x11e4a10_0;  1 drivers
+v0x11e6af0_0 .var "clkb", 0 0;
+v0x11e6bc0_0 .net "clkb_out", 0 0, v0x11e4ba0_0;  1 drivers
+S_0x11b6f30 .scope module, "clkgen_1" "clkgen" 2 23, 2 3 0, S_0x11b8590;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clka"
+    .port_info 1 /INPUT 1 "clkb"
+    .port_info 2 /OUTPUT 1 "clka_out"
+    .port_info 3 /OUTPUT 1 "clkb_out"
+v0x11b8be0_0 .net "clka", 0 0, v0x11e6930_0;  1 drivers
+v0x11e4a10_0 .var "clka_out", 0 0;
+v0x11e4ad0_0 .net "clkb", 0 0, v0x11e6af0_0;  1 drivers
+v0x11e4ba0_0 .var "clkb_out", 0 0;
+E_0x11b8970 .event edge, v0x11e4ad0_0;
+E_0x11ca6f0 .event edge, v0x11b8be0_0;
+S_0x11e4d10 .scope module, "decoder_1" "decoder_3_8" 2 21, 3 10 0, S_0x11b8590;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "E"
+    .port_info 1 /INPUT 3 "In"
+    .port_info 2 /OUTPUT 8 "Out"
+L_0x11e6c90 .functor NOT 1, L_0x11e6d60, C4<0>, C4<0>, C4<0>;
+L_0x11e6ea0 .functor AND 1, v0x11e66c0_0, L_0x11e6fb0, C4<1>, C4<1>;
+L_0x11e70a0 .functor AND 1, v0x11e66c0_0, L_0x11e6c90, C4<1>, C4<1>;
+v0x11e5fb0_0 .net "E", 0 0, v0x11e66c0_0;  1 drivers
+v0x11e6070_0 .net "E1", 0 0, L_0x11e6c90;  1 drivers
+v0x11e6130_0 .net "G1", 0 0, L_0x11e6ea0;  1 drivers
+v0x11e6200_0 .net "G2", 0 0, L_0x11e70a0;  1 drivers
+v0x11e62d0_0 .net "In", 2 0, v0x11e6760_0;  1 drivers
+v0x11e63c0_0 .net "Out", 7 0, L_0x11e7840;  alias, 1 drivers
+v0x11e6480_0 .net *"_s1", 0 0, L_0x11e6d60;  1 drivers
+v0x11e6560_0 .net *"_s3", 0 0, L_0x11e6fb0;  1 drivers
+L_0x11e6d60 .part v0x11e6760_0, 2, 1;
+L_0x11e6fb0 .part v0x11e6760_0, 2, 1;
+L_0x11e7390 .part v0x11e6760_0, 0, 2;
+L_0x11e7750 .part v0x11e6760_0, 0, 2;
+L_0x11e7840 .concat8 [ 4 4 0 0], L_0x11e75e0, L_0x11e7250;
+S_0x11e4f50 .scope module, "block1" "decoder_2_4" 3 18, 3 2 0, S_0x11e4d10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "E"
+    .port_info 1 /INPUT 2 "In"
+    .port_info 2 /OUTPUT 4 "Out"
+v0x11e51b0_0 .net "E", 0 0, L_0x11e6ea0;  alias, 1 drivers
+v0x11e5290_0 .net "In", 1 0, L_0x11e7390;  1 drivers
+v0x11e5370_0 .net "Out", 3 0, L_0x11e7250;  1 drivers
+L_0x7fd7d06ff018 .functor BUFT 1, C4<0001>, C4<0>, C4<0>, C4<0>;
+v0x11e5430_0 .net/2u *"_s0", 3 0, L_0x7fd7d06ff018;  1 drivers
+v0x11e5510_0 .net *"_s2", 3 0, L_0x11e71b0;  1 drivers
+L_0x7fd7d06ff060 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0x11e5640_0 .net/2u *"_s4", 3 0, L_0x7fd7d06ff060;  1 drivers
+L_0x11e71b0 .shift/l 4, L_0x7fd7d06ff018, L_0x11e7390;
+L_0x11e7250 .functor MUXZ 4, L_0x7fd7d06ff060, L_0x11e71b0, L_0x11e6ea0, C4<>;
+S_0x11e57a0 .scope module, "block2" "decoder_2_4" 3 19, 3 2 0, S_0x11e4d10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "E"
+    .port_info 1 /INPUT 2 "In"
+    .port_info 2 /OUTPUT 4 "Out"
+v0x11e59c0_0 .net "E", 0 0, L_0x11e70a0;  alias, 1 drivers
+v0x11e5aa0_0 .net "In", 1 0, L_0x11e7750;  1 drivers
+v0x11e5b80_0 .net "Out", 3 0, L_0x11e75e0;  1 drivers
+L_0x7fd7d06ff0a8 .functor BUFT 1, C4<0001>, C4<0>, C4<0>, C4<0>;
+v0x11e5c40_0 .net/2u *"_s0", 3 0, L_0x7fd7d06ff0a8;  1 drivers
+v0x11e5d20_0 .net *"_s2", 3 0, L_0x11e7510;  1 drivers
+L_0x7fd7d06ff0f0 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0x11e5e50_0 .net/2u *"_s4", 3 0, L_0x7fd7d06ff0f0;  1 drivers
+L_0x11e7510 .shift/l 4, L_0x7fd7d06ff0a8, L_0x11e7750;
+L_0x11e75e0 .functor MUXZ 4, L_0x7fd7d06ff0f0, L_0x11e7510, L_0x11e70a0, C4<>;
+    .scope S_0x11b6f30;
+T_0 ;
+    %wait E_0x11ca6f0;
+    %load/v 8, v0x11b8be0_0, 1;
+    %set/v v0x11e4a10_0, 8, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x11b6f30;
+T_1 ;
+    %wait E_0x11b8970;
+    %load/v 8, v0x11e4ad0_0, 1;
+    %set/v v0x11e4ba0_0, 8, 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0x11b8590;
+T_2 ;
+    %set/v v0x11e6930_0, 0, 1;
+    %set/v v0x11e6af0_0, 0, 1;
+    %end;
+    .thread T_2;
+    .scope S_0x11b8590;
+T_3 ;
+    %delay 10, 0;
+    %load/v 8, v0x11e6930_0, 1;
+    %inv 8, 1;
+    %set/v v0x11e6930_0, 8, 1;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x11b8590;
+T_4 ;
+    %delay 20, 0;
+    %load/v 8, v0x11e6af0_0, 1;
+    %inv 8, 1;
+    %set/v v0x11e6af0_0, 8, 1;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x11b8590;
+T_5 ;
+    %delay 0, 0;
+    %set/v v0x11e66c0_0, 0, 1;
+    %set/v v0x11e6760_0, 0, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %set/v v0x11e6760_0, 0, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %movi 8, 1, 3;
+    %set/v v0x11e6760_0, 8, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %movi 8, 2, 3;
+    %set/v v0x11e6760_0, 8, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %movi 8, 3, 3;
+    %set/v v0x11e6760_0, 8, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %movi 8, 4, 3;
+    %set/v v0x11e6760_0, 8, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %movi 8, 5, 3;
+    %set/v v0x11e6760_0, 8, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %movi 8, 6, 3;
+    %set/v v0x11e6760_0, 8, 3;
+    %delay 10, 0;
+    %set/v v0x11e66c0_0, 1, 1;
+    %set/v v0x11e6760_0, 1, 3;
+    %delay 10, 0;
+    %vpi_call/w 2 45 "$finish" {0 0};
+    %end;
+    .thread T_5;
+    .scope S_0x11b8590;
+T_6 ;
+    %vpi_call/w 2 48 "$dumpfile", "decoder.vcd" {0 0};
+    %vpi_call/w 2 49 "$dumpvars", 1'sb0, S_0x11e4d10 {0 0};
+    %vpi_call/w 2 50 "$dumpvars", 1'sb0, S_0x11b6f30 {0 0};
+    %end;
+    .thread T_6;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.sv";
+    "design.sv";
